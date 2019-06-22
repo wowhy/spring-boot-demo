@@ -1,5 +1,6 @@
 package com.example.serviceauth.domain.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -8,6 +9,7 @@ import com.example.serviceauth.domain.entity.User;
 import com.example.serviceauth.domain.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -19,10 +21,12 @@ import org.springframework.web.server.ResponseStatusException;
 @Transactional
 public class UserDomainService {
   private final UserRepository userRepository;
+  private final ApplicationEventPublisher eventPublisher;
 
   @Autowired
-  public UserDomainService(UserRepository userRepository) {
+  public UserDomainService(UserRepository userRepository, ApplicationEventPublisher eventPublisher) {
     this.userRepository = userRepository;
+    this.eventPublisher = eventPublisher;
   }
 
   public User register(String userName, String password) {
@@ -33,10 +37,12 @@ public class UserDomainService {
 
     User user = new User(userName, password);
 
-    user = this.userRepository.save(user);
+    this.userRepository.save(user);
 
-    // List<Object> domainEvents = user.getDomainEvents();
-    // TODO: 发布领域事件
+    List<Object> domainEvents = user.getDomainEvents();
+    for (Object domainEvent : domainEvents) {
+      this.eventPublisher.publishEvent(domainEvent);
+    }
 
     return user;
   }
