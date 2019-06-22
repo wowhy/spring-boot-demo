@@ -6,16 +6,24 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Debug (Launch) - Current File",
+      "name": "Debug (Launch)-GatewayApplication<gateway-web>",
       "request": "launch",
-      "mainClass": "${file}"
+      "mainClass": "com.example.gatewayweb.GatewayApplication",
+      "projectName": "gateway-web"
     },
     {
       "type": "java",
-      "name": "Debug (Launch)-DemoApplication<gateway-api>",
+      "name": "Debug (Launch)-GatewayApplication<gateway-mobile>",
       "request": "launch",
-      "mainClass": "com.example.gatewayweb.DemoApplication",
-      "projectName": "gateway-api"
+      "mainClass": "com.example.gatewaymobile.GatewayApplication",
+      "projectName": "gateway-mobile"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-ServiceApplication<service-auth>",
+      "request": "launch",
+      "mainClass": "com.example.serviceauth.ServiceApplication",
+      "projectName": "service-auth"
     }
   ]
 }

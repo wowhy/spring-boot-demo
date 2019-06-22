@@ -10,9 +10,9 @@
     <!-- lookup parent from repository -->
   </parent>
   <groupId>com.example</groupId>
-  <artifactId>gateway-web</artifactId>
+  <artifactId>gateway-mobile</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>gateway-webb</name>
+  <name>gateway-mobile</name>
   <description>Demo project for Spring Boot</description>
 
   <properties>
