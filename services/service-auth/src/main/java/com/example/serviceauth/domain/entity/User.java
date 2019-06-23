@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 
 import com.example.serviceauth.domain.event.UserCreatedDomainEvent;
+import com.example.serviceauth.domain.event.UserLoginedDomainEvent;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import lombok.Data;
 
@@ -38,5 +42,13 @@ public class User {
     this.password = password;
 
     this.domainEvents.add(new UserCreatedDomainEvent(this));
+  }
+
+  public void login(String password) {
+    if (this.password != null && this.password.equals(password)) {
+      this.domainEvents.add(new UserLoginedDomainEvent(this));
+    } else {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "密码错误！");
+    }
   }
 }

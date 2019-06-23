@@ -6,6 +6,8 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import com.example.serviceauth.application.dtos.UserDto;
+import com.example.serviceauth.application.dtos.UserLoginDto;
+import com.example.serviceauth.application.dtos.UserLoginResponseDto;
 import com.example.serviceauth.application.dtos.UserRegisterDto;
 import com.example.serviceauth.domain.entity.User;
 import com.example.serviceauth.domain.service.UserDomainService;
@@ -43,6 +45,10 @@ public class UserService {
     }));
 
     return response;
+  }
+
+  public Mono<UserLoginResponseDto> login(UserLoginDto dto) {
+    return Mono.just(new UserLoginResponseDto());
   }
 
   private <T> void validate(T param) {

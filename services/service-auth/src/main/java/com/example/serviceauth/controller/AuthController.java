@@ -3,6 +3,8 @@ package com.example.serviceauth.controller;
 import javax.validation.Valid;
 
 import com.example.serviceauth.application.dtos.UserDto;
+import com.example.serviceauth.application.dtos.UserLoginDto;
+import com.example.serviceauth.application.dtos.UserLoginResponseDto;
 import com.example.serviceauth.application.dtos.UserRegisterDto;
 import com.example.serviceauth.application.service.UserService;
 
@@ -18,13 +20,17 @@ import reactor.core.publisher.Mono;
  * UserController
  */
 @RestController
-public class UserController {
+public class AuthController {
   @Autowired
   private UserService userService;
 
-  @RequestMapping(value = "/users", method = RequestMethod.POST)
-  public Mono<UserDto> create(@RequestBody @Valid UserRegisterDto dto) {
-    Mono<UserDto> response = this.userService.register(dto);
-    return response;
+  @RequestMapping(value = "/auth/register", method = RequestMethod.POST)
+  public Mono<UserDto> register(@RequestBody @Valid UserRegisterDto dto) {
+    return this.userService.register(dto);
+  }
+
+  @RequestMapping(value = "/auth/login", method = RequestMethod.POST)
+  public Mono<UserLoginResponseDto> login(@RequestBody @Valid UserLoginDto dto) {
+    return this.userService.login(dto);
   }
 }
