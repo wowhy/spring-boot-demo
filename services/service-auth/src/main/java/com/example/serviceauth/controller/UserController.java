@@ -1,5 +1,7 @@
 package com.example.serviceauth.controller;
 
+import javax.validation.Valid;
+
 import com.example.serviceauth.application.dtos.UserDto;
 import com.example.serviceauth.application.dtos.UserRegisterDto;
 import com.example.serviceauth.application.service.UserService;
@@ -21,7 +23,7 @@ public class UserController {
   private UserService userService;
 
   @RequestMapping(value = "/users", method = RequestMethod.POST)
-  public Mono<UserDto> create(@RequestBody UserRegisterDto dto) {
+  public Mono<UserDto> create(@RequestBody @Valid UserRegisterDto dto) {
     Mono<UserDto> response = this.userService.register(dto);
     return response;
   }
