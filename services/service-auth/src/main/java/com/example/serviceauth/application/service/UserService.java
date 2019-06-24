@@ -6,6 +6,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import com.example.serviceauth.application.dtos.*;
+import com.example.serviceauth.domain.aggregate.accesstoken.*;
 import com.example.serviceauth.domain.aggregate.user.*;
 import com.example.serviceauth.domain.service.*;
 
@@ -45,7 +46,11 @@ public class UserService {
   }
 
   public Mono<UserLoginResponseDto> login(UserLoginDto dto) {
-    return Mono.just(new UserLoginResponseDto());
+    AccessToken accessToken = this.userDomainService.login(dto.getUserName(), dto.getPassword(), 7200);
+    UserLoginResponseDto response = new UserLoginResponseDto(7200, new AccessTokenResponseDto(accessToken.getUserId(),
+        accessToken.getAccessToken(), accessToken.getRefreshToken()));
+
+    return Mono.just(response);
   }
 
   private <T> void validate(T param) {
