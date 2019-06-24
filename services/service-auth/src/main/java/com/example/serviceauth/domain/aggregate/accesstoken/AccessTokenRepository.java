@@ -1,8 +1,6 @@
-package com.example.serviceauth.domain.repository;
+package com.example.serviceauth.domain.aggregate.accesstoken;
 
 import java.util.UUID;
-
-import com.example.serviceauth.domain.entity.AccessToken;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

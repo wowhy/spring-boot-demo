@@ -5,12 +5,9 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
-import com.example.serviceauth.application.dtos.UserDto;
-import com.example.serviceauth.application.dtos.UserLoginDto;
-import com.example.serviceauth.application.dtos.UserLoginResponseDto;
-import com.example.serviceauth.application.dtos.UserRegisterDto;
-import com.example.serviceauth.domain.entity.User;
-import com.example.serviceauth.domain.service.UserDomainService;
+import com.example.serviceauth.application.dtos.*;
+import com.example.serviceauth.domain.aggregate.user.*;
+import com.example.serviceauth.domain.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

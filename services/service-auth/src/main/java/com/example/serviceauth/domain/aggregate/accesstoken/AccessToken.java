@@ -1,4 +1,4 @@
-package com.example.serviceauth.domain.entity;
+package com.example.serviceauth.domain.aggregate.accesstoken;
 
 import java.util.Date;
 import java.util.UUID;

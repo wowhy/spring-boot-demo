@@ -1,9 +1,7 @@
-package com.example.serviceauth.domain.repository;
+package com.example.serviceauth.domain.aggregate.user;
 
 import java.util.Optional;
 import java.util.UUID;
-
-import com.example.serviceauth.domain.entity.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

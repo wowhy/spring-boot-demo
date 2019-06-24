@@ -1,4 +1,4 @@
-package com.example.serviceauth.domain.entity;
+package com.example.serviceauth.domain.aggregate.user;
 
 import java.util.ArrayList;
 import java.util.List;

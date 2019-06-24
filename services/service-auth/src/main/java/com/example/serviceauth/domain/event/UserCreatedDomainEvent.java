@@ -2,7 +2,7 @@ package com.example.serviceauth.domain.event;
 
 import java.util.UUID;
 
-import com.example.serviceauth.domain.entity.User;
+import com.example.serviceauth.domain.aggregate.user.User;
 
 import lombok.Data;
 

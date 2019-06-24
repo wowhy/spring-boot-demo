@@ -8,10 +8,8 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
-import com.example.serviceauth.domain.entity.AccessToken;
-import com.example.serviceauth.domain.entity.User;
-import com.example.serviceauth.domain.repository.AccessTokenRepository;
-import com.example.serviceauth.domain.repository.UserRepository;
+import com.example.serviceauth.domain.aggregate.accesstoken.*;
+import com.example.serviceauth.domain.aggregate.user.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
