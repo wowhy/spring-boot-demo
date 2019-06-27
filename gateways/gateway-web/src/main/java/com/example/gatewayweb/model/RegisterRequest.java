@@ -1,14 +1,14 @@
-package com.example.serviceauth.application.dtos;
+package com.example.gatewayweb.model;
 
 import javax.validation.constraints.*;
 
 import lombok.Data;
 
 /**
- * UserLoginDto
+ * RegisterRequest
  */
 @Data
-public class UserLoginDto {
+public class RegisterRequest {
   @NotNull
   @NotBlank
   private String userName;
