@@ -4,19 +4,19 @@ import java.util.Date;
 import java.util.UUID;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
+
+import com.example.ddd.domain.AggreateRoot;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * AccessToken
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
-public class AccessToken {
-  @Id
-  private UUID id;
-
+public class AccessToken extends AggreateRoot {
   private UUID userId;
   private String accessToken;
   private Date accessTokenExpiresAt;
@@ -29,7 +29,7 @@ public class AccessToken {
 
   public AccessToken(UUID userId, String accessToken, Date accessTokenExpiresAt, String refreshToken,
       Date refreshTokenExpiresAt) {
-    this.id = UUID.randomUUID();
+    super(UUID.randomUUID());
     this.userId = userId;
     this.accessToken = accessToken;
     this.accessTokenExpiresAt = accessTokenExpiresAt;

@@ -17,6 +17,7 @@
   </parent>
 
   <modules>
+    <module>packages/ddd</module>
     <module>gateways/gateway-mobile</module>
     <module>gateways/gateway-web</module>
     <module>services/service-auth</module>

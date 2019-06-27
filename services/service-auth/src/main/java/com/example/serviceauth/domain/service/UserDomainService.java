@@ -1,13 +1,15 @@
 package com.example.serviceauth.domain.service;
 
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
 
+import com.example.ddd.domain.AggreateRoot;
+import com.example.ddd.domain.DomainEvent;
 import com.example.serviceauth.domain.aggregate.accesstoken.*;
 import com.example.serviceauth.domain.aggregate.user.*;
 
@@ -48,11 +50,7 @@ public class UserDomainService {
     User user = new User(userName, password);
 
     this.userRepository.save(user);
-
-    List<Object> domainEvents = user.getDomainEvents();
-    for (Object domainEvent : domainEvents) {
-      this.eventPublisher.publishEvent(domainEvent);
-    }
+    this.publishDomainEvents(user);
 
     return user;
   }
@@ -74,10 +72,7 @@ public class UserDomainService {
         .save(new AccessToken(user.getId(), UUID.randomUUID().toString(), this.addHour(new Date(), 2),
             UUID.randomUUID().toString(), this.addHour(new Date(), 24 * 30)));
 
-    List<Object> domainEvents = user.getDomainEvents();
-    for (Object domainEvent : domainEvents) {
-      this.eventPublisher.publishEvent(domainEvent);
-    }
+    this.publishDomainEvents(user);
 
     return accessToken;
   }
@@ -87,5 +82,12 @@ public class UserDomainService {
     calendar.setTime(date);
     calendar.add(Calendar.HOUR, hour);
     return calendar.getTime();
+  }
+
+  private void publishDomainEvents(AggreateRoot entity) {
+    Collection<DomainEvent> domainEvents = entity.getDomainEvents();
+    for (DomainEvent domainEvent : domainEvents) {
+      this.eventPublisher.publishEvent(domainEvent);
+    }
   }
 }
